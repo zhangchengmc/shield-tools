@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文本框处理</title>
+</head>
+<body>
+    <textarea id="input" cols="50" rows="10"></textarea><br>
+    <button onclick="addPrefix()">增加前缀</button>
+    <button onclick="copyText()">复制文本</button>
+    <button onclick="saveAsHost()">保存为host文件</button>
+
+    <script>
+        function addPrefix() {
+            var input = document.getElementById("input");
+            var lines = input.value.split("\n");
+            var formattedText = "";
+            
+            for (var i = 0; i < lines.length; i++) {
+                if (lines[i].trim() !== "") {
+                    formattedText += "127.0.0.1 " + lines[i].trim() + "\n";
+                } else {
+                    formattedText += "\n";
+                }
+            }
+            
+            input.value = formattedText.trim();
+        }
+        
+        function copyText() {
+            var input = document.getElementById("input");
+            input.select();
+            document.execCommand("copy");
+            alert("文本已复制到剪贴板！");
+        }
+        
+        function saveAsHost() {
+            var input = document.getElementById("input");
+            var text = input.value;
+            
+            var element = document.createElement("a");
+            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+            element.setAttribute("download", "hosts.txt");
+            element.style.display = "none";
+            document.body.appendChild(element);
+            
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>
