@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>文本框处理</title>
+    <title>制作host屏蔽文件</title>
 </head>
 <body>
     <textarea id="input" cols="50" rows="10"></textarea><br>
-    <button onclick="addPrefix()">增加前缀</button>
-    <button onclick="copyText()">复制文本</button>
-    <button onclick="saveAsHost()">保存为host文件</button>
+    <button onclick="addPrefix()">制作hosts屏蔽文件</button>
+    <button onclick="copyText()">复制hosts屏蔽文件</button>
+    <button onclick="saveAsHost()">保存hosts文件</button>
 
     <script>
         function addPrefix() {
@@ -30,7 +30,7 @@
             var input = document.getElementById("input");
             input.select();
             document.execCommand("copy");
-            alert("文本已复制到剪贴板！");
+            alert("hosts已复制到剪贴板！");
         }
         
         function saveAsHost() {
@@ -39,7 +39,7 @@
             
             var element = document.createElement("a");
             element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
-            element.setAttribute("download", "hosts.txt");
+            element.setAttribute("download", "hosts");
             element.style.display = "none";
             document.body.appendChild(element);
             
